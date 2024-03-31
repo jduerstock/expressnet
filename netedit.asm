@@ -6,23 +6,6 @@
 
 	.setcpu "6502"
 
-L200C           := $200C
-L2012           := $2012
-L2017           := $2017
-L2018           := $2018
-L2019           := $2019
-L2020           := $2020
-L2023           := $2023
-L202D           := $202D
-L203A           := $203A
-L2046           := $2046
-L2051           := $2051
-L2053           := $2053
-L2057           := $2057
-L2065           := $2065
-L2165           := $2165
-L2804           := $2804
-L3028           := $3028
 L3200           := $3200
 L3203           := $3203
 L3209           := $3209
@@ -80,27 +63,8 @@ L32D8           := $32D8
 L3306           := $3306
 L3A20           := $3A20
 L3A3F           := $3A3F
-L3A6C           := $3A6C
-L3D31           := $3D31
-L4143           := $4143
-L4225           := $4225
-L4242           := $4242
-L4313           := $4313
-L4317           := $4317
-L4319           := $4319
-L4520           := $4520
-L4D1B           := $4D1B
-L4E0F           := $4E0F
-L4F4C           := $4F4C
-L5218           := $5218
-L5320           := $5320
-L540C           := $540C
-L5420           := $5420
 L554F           := $554F
 L5912           := $5912
-L5B0A           := $5B0A
-L5B0E           := $5B0E
-L5B11           := $5B11
 L5B18           := $5B18
 L5B1F           := $5B1F
 L5B20           := $5B20
@@ -115,27 +79,16 @@ L6170           := $6170
 L6177           := $6177
 L6220           := $6220
 L6465           := $6465
-L654D           := $654D
-L6557           := $6557
-L656D           := $656D
-L6572           := $6572
-L6620           := $6620
-L666F           := $666F
-L6874           := $6874
-L6966           := $6966
-L6974           := $6974
-L6E65           := $6E65
 L6E6F           := $6E6F
 L6F63           := $6F63
 L6F68           := $6F68
-L6F74           := $6F74
 LD800           := $D800
 LD8E6           := $D8E6
 LD9AA           := $D9AA
 LD9D2           := $D9D2
 LDADB           := $DADB
 LDDB6           := $DDB6
-LE456           := $E456
+CIOV		:= $E456
 
 	.SEGMENT "S_EDIT_HDR"
 
@@ -150,40 +103,10 @@ LE456           := $E456
 	.byte   $12
 	asl     a
 	.byte   $02
-	cli
-	.byte   $43
-	and     $3536
-	bit     L5420
-	pla
-	adc     $20
-	.byte   $43
-	jsr     L7243
-	.byte   $6F
-	.byte   $73
-	.byte   $73
-	and     $6F43
-	adc     $6970
-L701E:  jmp     (L7265)
+	.byte	"XC-65, The C Cross-Compiler",$9B
+	.byte	"(c) 1988 Orion Micro Systems"
+	.byte	$01,$60
 
-	.byte   $9B
-	plp
-	.byte   $63
-	and     #$20
-	and     ($39),y
-	sec
-	sec
-	jsr     L724F
-	adc     #$6F
-	ror     $4D20
-	adc     #$63
-	.byte   $72
-	.byte   $6F
-	.byte	$20,$53,$79 ; jsr     L7953
-	.byte   $73
-	.byte   $74
-	adc     $6D
-	.byte   $73
-	ora     ($60,x)
 L7040:  lda     #$20
 	ldx     #$87
 	sta     $A0
@@ -209,24 +132,8 @@ L7040:  lda     #$20
 	jsr     L8267
 	rts
 
-	.byte   $1B
-	.byte   $44
-	sei
-	.byte   $3A
-	rol     $5250,x
-	.byte   $4F
-	rol     $454E,x
-	.byte   $54
-	.byte   $57
-	.byte   $4F
-	.byte   $52
-	.byte   $4B
-	rol     L4143,x
-	jmp     L4F4C
+	.byte   $1B,"Dx:>PRO>NETWORK>CALLOUT.DAT"
 
-	eor     $54,x
-	rol     $4144
-	.byte   $54
 L7095:  lda     #$01
 	ldx     #$00
 	sta     a:$94
@@ -465,48 +372,14 @@ L727F:  jsr     L8601
 
 L728E:  brk
 L728F:  brk
-	and     ($20,x)
-	jsr     L2020
-	jsr     L5F20
-	.byte   $5F
-	eor     $78
-	bvs     L730F
-	adc     $73
-	.byte   $73
-	lsr     $5445
-	and     ($20,x)
-	.byte   $43
-	adc     ($6C,x)
-	jmp     (L4520)
 
-	.byte   $64
-	adc     #$74
-	.byte   $6F
-	.byte   $72
-	.byte   $5F
-	.byte   $5F
-	bpl     L72F9
-	adc     L7470
-	adc     L2020,y
-	jsr     L2020
-	jsr     L2020
-	jsr     L2020
-	.byte   $1F
-	jsr     L2051
-	.byte   $74
-	.byte   $6F
-	jsr     L7571
-	adc     #$74
-	jsr     L726F
-	jsr     L6E65
-	.byte   $74
-	.byte   $72
-	adc     $2320,y
-	jsr     L6F74
-	jsr     L6465
-	adc     #$74
-	.byte   $3A
-	.byte   $20
+L7290:
+	.byte	$21,"      __ExpressNET! Call Editor__"
+
+	.byte	$10,"Empty           "
+
+	.byte   $1F," Q to quit or entry # to edit: "
+
 L72E3:  lda     $A0
 	sta     L78FB
 	lda     L78FB
@@ -2138,7 +2011,7 @@ L83C3:  jsr     L8483
 	sta     $034A,x
 	lda     $A6
 	sta     $034B,x
-	jsr     LE456
+	jsr     CIOV
 	bpl     L8402
 	lda     #$00
 	beq     L8404
@@ -2164,7 +2037,7 @@ L8412:  lda     $A0
 	sta     $0348,x
 	lda     $A5
 	sta     $0349,x
-	jsr     LE456
+	jsr     CIOV
 	bmi     L843F
 L8435:  lda     $0348,x
 	pha
@@ -2196,7 +2069,7 @@ L8451:  lda     $A0
 	sta     $0348,x
 	lda     $A5
 	sta     $0349,x
-	jsr     LE456
+	jsr     CIOV
 	bmi     L847E
 	lda     $0348,x
 	pha
@@ -2213,7 +2086,7 @@ L8483:  lda     $A0
 	jsr     L83BD
 	lda     #$0C
 	sta     $0342,x
-	jsr     LE456
+	jsr     CIOV
 	bpl     L8496
 	lda     #$00
 	beq     L8498

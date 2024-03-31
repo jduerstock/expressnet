@@ -6,14 +6,6 @@
 
 	.setcpu "6502"
 
-L2008           := $2008
-L2020           := $2020
-L203A           := $203A
-L2065           := $2065
-L206C           := $206C
-L2165           := $2165
-L252E           := $252E
-L3120           := $3120
 L3203           := $3203
 L3209           := $3209
 L320F           := $320F
@@ -679,150 +671,17 @@ L74CF:  brk
 	and     $65
 	and     $65
 	and     $65
-	jsr     L2020
-	jsr     L5F5F
-	eor     $78
-	bvs     L7579
-	adc     $73
-	.byte   $73
-	lsr     $5445
-	and     ($20,x)
-	.byte   $44
-	adc     #$61
-	jmp     (L7265)
+	.byte	"    __ExpressNET! Dialer Activated__%e%e"
+	.byte   $0F,"%eEntry  : %s%e"
+	.byte	$09,"Status : "
+	.byte   $1A,"already connected today.%e"
+	.byte   $1A,"not scheduled for today.%e"
+	.byte   $17,"not time to call yet.%e"
+	.byte   $1C,"exhausted maximum retries.%e"
+	.byte   $1B,"placing ExpressNET! call.%e"
+	.byte	$23,"%eNo file waiting for your node..%e"
+	.byte	$21,"%eNetCALL: processing finished.%e"
 
-	jsr     L6341
-	.byte   $74
-	adc     #$76
-	adc     ($74,x)
-	adc     $64
-	.byte   $5F
-	.byte   $5F
-	and     $65
-	and     $65
-	.byte   $0F
-	and     $65
-	eor     $6E
-	.byte   $74
-	.byte   $72
-	adc     L2020,y
-	.byte   $3A
-	jsr     L7325
-	and     $65
-	ora     #$53
-	.byte   $74
-	adc     ($74,x)
-	adc     $73,x
-	jsr     L203A
-	.byte   $1A
-	adc     ($6C,x)
-	.byte   $72
-	adc     $61
-	.byte   $64
-	adc     $6320,y
-	.byte   $6F
-	ror     $656E
-	.byte   $63
-	.byte   $74
-	adc     $64
-	jsr     L6F74
-	.byte   $64
-	adc     ($79,x)
-	rol     $6525
-	.byte   $1A
-	ror     L746F
-	jsr     L6373
-	pla
-	adc     $64
-	adc     $6C,x
-	adc     $64
-	jsr     L6F66
-	.byte   $72
-	jsr     L6F74
-	.byte   $64
-	adc     ($79,x)
-	rol     $6525
-	.byte   $17
-	ror     L746F
-L7579:  jsr     L6974
-	adc     L2065
-	.byte   $74
-	.byte   $6F
-	jsr     L6163
-	jmp     (L206C)
-
-	adc     L7465,y
-	rol     $6525
-	.byte   $1C
-	adc     $78
-	pla
-	adc     ($75,x)
-	.byte   $73
-	.byte   $74
-	adc     $64
-	jsr     L616D
-	sei
-	adc     #$6D
-	adc     $6D,x
-	jsr     L6572
-	.byte   $74
-	.byte   $72
-	adc     #$65
-	.byte   $73
-	rol     $6525
-	.byte   $1B
-	bvs     L7619
-	adc     ($63,x)
-	adc     #$6E
-	.byte   $67
-	jsr     L7845
-	bvs     L7629
-	adc     $73
-	.byte   $73
-	lsr     $5445
-	and     ($20,x)
-	.byte   $63
-	adc     ($6C,x)
-	jmp     (L252E)
-
-	adc     $23
-	and     $65
-	lsr     $206F
-	ror     $69
-	jmp     (L2065)
-
-	.byte   $77
-	adc     ($69,x)
-	.byte   $74
-	adc     #$6E
-	.byte   $67
-	jsr     L6F66
-	.byte   $72
-	jsr     L6F79
-	adc     $72,x
-	jsr     L6F6E
-	.byte   $64
-	adc     $2E
-	rol     $6525
-	and     ($25,x)
-	adc     $4E
-	adc     $74
-	.byte   $43
-	eor     ($4C,x)
-	jmp     L203A
-
-	bvs     L766A
-	.byte   $6F
-	.byte   $63
-	adc     $73
-	.byte   $73
-	adc     #$6E
-	.byte   $67
-	jsr     L6966
-	ror     L7369
-	pla
-	adc     $64
-	rol     $6525
 L760C:  lda     #$1F
 	ldx     #$79
 	sta     $A0
@@ -1770,35 +1629,8 @@ L7E34:  lda     #$02
 L7E48:  brk
 L7E49:  brk
 	brk
-	jsr     L6E55
-	adc     ($62,x)
-	jmp     (L2065)
-
-	.byte   $74
-	.byte   $6F
-	jsr     L706F
-	adc     $6E
-	jsr     L4143
-	jmp     L4F4C
-
-	eor     $54,x
-	rol     $4144
-	.byte   $54
-	jsr     L6966
-	jmp     (L2165)
-
-	ora     $6E49,y
-	ror     $61,x
-	jmp     (L6469)
-
-	jsr     L4143
-	jmp     L4F4C
-
-	eor     $54,x
-	rol     $4144
-	.byte   $54
-	jsr     L6966
-	jmp     (L2165)
+	.byte	$20,"Unable to open CALLOUT.DAT file!"
+	.byte	$19,"Invalid CALLOUT.DAT file!"
 
 L7E86:  jsr     L8401
 	lda     #$02
@@ -1881,40 +1713,9 @@ L7F11:  lda     #$02
 
 	brk
 	brk
-	jsr     L6E55
-	adc     ($62,x)
-	jmp     (L2065)
 
-	.byte   $74
-	.byte   $6F
-	jsr     L706F
-	adc     $6E
-	jsr     L4143
-	jmp     L4F4C
-
-	eor     $54,x
-	rol     $4144
-	.byte   $54
-	jsr     L6966
-	jmp     (L2165)
-
-	.byte   $1F
-	eor     $72
-	.byte   $72
-	.byte   $6F
-	.byte   $72
-	jsr     L7277
-	adc     #$74
-	adc     #$6E
-	.byte   $67
-	jsr     L4143
-	jmp     L4F4C
-
-	eor     $54,x
-	rol     $4144
-	.byte   $54
-	jsr     L6966
-	jmp     (L2165)
+	.byte	$20,"Unable to open CALLOUT.DAT file!"
+	.byte   $1F,"Error writing CALLOUT.DAT file!"
 
 	rts
 
