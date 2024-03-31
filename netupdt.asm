@@ -2620,30 +2620,15 @@ L82FF:  ldx     #$82
 	jsr     L729B
 	rts
 
-	.byte   $1D
-	.byte   $44
-L8312:  sei
-	.byte   $3A
-	rol     $5250,x
-	.byte   $4F
-	rol     $454E,x
-	.byte   $54
-	.byte   $57
-	.byte   $4F
-	.byte   $52
-	.byte   $4B
-	rol     $4E49,x
-	.byte   $43
-	.byte   $4F
-	eor     $4E49
-	.byte   $47
-	rol     $4144
-	.byte   $54
+L8311:
+	.byte   $1D,"Dx:>PRO>NETWORK>INCOMING.DAT"
+
 	brk
+
 L832E:  jmp     L8331
 
 L8331:  lda     $3EEF
-	sta     L8312
+	sta     L8311+2
 	jsr     L3212
 	lda     #$00
 	sta     $A3

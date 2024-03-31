@@ -2029,44 +2029,8 @@ L82F5:  lda     #$02
 
 	brk
 	brk
-	.byte   $22
-	eor     $6E,x
-	adc     ($62,x)
-	jmp     (L2065)
-
-	.byte   $74
-	.byte   $6F
-	jsr     L7263
-	adc     $61
-	.byte   $74
-	adc     $20
-	.byte   $43
-	eor     ($4C,x)
-	jmp     L554F
-
-	.byte   $54
-	rol     $4144
-	.byte   $54
-	jsr     L6966
-	jmp     (L2165)
-
-	.byte   $1F
-	eor     $72
-	.byte   $72
-	.byte   $6F
-	.byte   $72
-	jsr     L7277
-	adc     #$74
-	adc     #$6E
-	.byte   $67
-	jsr     L4143
-	jmp     L4F4C
-
-	eor     $54,x
-	rol     $4144
-	.byte   $54
-	jsr     L6966
-	jmp     (L2165)
+	.byte   $22,"Unable to create CALLOUT.DAT file!"
+	.byte   $1F,"Error writing CALLOUT.DAT file!"
 
 	rts
 
