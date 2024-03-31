@@ -1222,80 +1222,14 @@ L7904:  brk
 	.byte	$19,"               Thursday? "
 	.byte	$19,"                 Friday? "
 	.byte	$19,"               Saturday? "
-	.byte	$17,"Call from hour"
-	jsr     L3028
-	and     $3332
-	and     #$3A
-	jsr     L2017
-	jsr     L2020
-	adc     $6E,x
-	.byte   $74
-	adc     #$6C
-	jsr     L6F68
-	adc     $72,x
-	jsr     L3028
-	and     $3432
-	and     #$3A
-	jsr     L4D1B
-	adc     ($78,x)
-	adc     #$6D
-	adc     $6D,x
-	jsr     L756E
-	adc     $6562
-	.byte   $72
-	jsr     L666F
-	jsr     L6572
-	.byte   $74
-	.byte   $72
-	adc     #$65
-	.byte   $73
-	.byte   $3A
-	jsr     L4313
-	jmp     (L6165)
+	.byte	$17,"Call from hour (0-23): "
+	.byte	$17,"    until hour (0-24): "
+	.byte	$1B,"Maximum number of retries: "
+	.byte	$13,"Clear these dates? "
+	.byte	$18,"Redirect messages coming"
+	.byte   $12,"from base (1-31): "
+	.byte	$12,"  to base (1-31): "
 
-	.byte   $72
-	jsr     L6874
-	adc     $73
-	adc     $20
-	.byte   $64
-	adc     ($74,x)
-	adc     $73
-	.byte   $3F
-	jsr     L5218
-	adc     $64
-	adc     #$72
-	adc     $63
-	.byte   $74
-	jsr     L656D
-	.byte   $73
-	.byte   $73
-	adc     ($67,x)
-	adc     $73
-	jsr     L6F63
-	adc     $6E69
-	.byte   $67
-	.byte   $12
-	ror     $72
-	.byte   $6F
-	adc     L6220
-	adc     ($73,x)
-	adc     $20
-	plp
-	and     ($2D),y
-	.byte   $33
-	and     ($29),y
-	.byte   $3A
-	jsr     L2012
-	jsr     L6F74
-	jsr     L6162
-	.byte   $73
-	adc     $20
-	plp
-	and     ($2D),y
-	.byte   $33
-	and     ($29),y
-	.byte   $3A
-	.byte   $20
 L7AD7:  lda     #$7D
 	ldx     #$00
 	sta     $A0
@@ -1756,185 +1690,29 @@ L7EC8:  brk
 	brk
 	brk
 	brk
-	asl     $415B
-	eor     $4220,x
-	.byte   $42
-	.byte   $53
-	jsr     L614E
-	adc     $3A65
-	jsr     L5B0E
-	.byte   $42
-	eor     $4E20,x
-	adc     $6D,x
-	.byte   $62
-	adc     $72
-	jsr     L3A20
-	jsr     L2804
-	.byte   $54
-	and     #$20
-	.byte   $04
-	plp
-	bvc     L7F22
-	jsr     L5B0A
-	.byte   $43
-	eor     $4220,x
-	adc     ($75,x)
-	.byte   $64
-	.byte   $3A
-	jsr     L3306
-	bmi     L7F39
-	jsr     L2020
+	.byte	$0E,"[A] BBS Name: "
+	.byte	$0E,"[B] Number  : "
+	.byte   $04,"(T) "
+	.byte   $04,"(P) "
+	.byte	$0A,"[C] Baud: "
+	.byte	$06,"300   "
 	.byte	$06,"1200  "
 	.byte	$06,"2400  "
 	.byte	$06,"9600  "
-	.byte   $12
-L7F22:  .byte   $5B
-	.byte   $44
-	eor     L5320,x
-	adc     $63
-	.byte   $73
-	jsr     L6F74
-	jsr     L6177
-	adc     #$74
-	.byte   $3A
-	jsr     L5B11
-	eor     $5D
-	.byte   $20
-L7F39:  eor     $6E,x
-	.byte   $73
-	adc     $72
-	.byte   $6E
-	.byte   $75
-L7F40:  .byte   $6D
-L7F41:  .byte   $2F
-	bvc     L7F9B
-	.byte   $3A
-	jsr     L5B1F
-L7F48:  lsr     $5D
-	jsr     L6144
-	adc     $2073,y
-	.byte   $74
-	.byte   $6F
-	jsr     L6163
-	jmp     (L3A6C)
-
-	jsr     L2053
-	eor     L5420
-	jsr     L2057
-	.byte   $54
-	jsr     L2046
-	.byte   $53
-	.byte   $12
-	jsr     L2020
-	jsr     L2020
-	jsr     L2020
-	jsr     L2020
-	jsr     L2020
-	jsr     L2020
-	.byte   $02
-	adc     $0220,y
-	ror     $1A20
-	.byte   $5B
-	.byte   $47
-	eor     $4320,x
-	adc     ($6C,x)
-	jmp     (L6220)
-
-	adc     $74
-	.byte   $77
-	adc     $65
-	ror     $6820
-	.byte   $6F
-	adc     $72,x
-	.byte   $73
-	jsr     L3A20
-	.byte   $20
-	.byte   $03
-L7F9B:  jsr     L202D
-	.byte   $1A
-	.byte   $5B
-	pha
-	eor     $4D20,x
-	adc     ($78,x)
-	adc     #$6D
-	adc     $6D,x
-	jsr     L2023
-	.byte   $6F
-	ror     $20
-	.byte   $72
-	adc     $74
-	.byte   $72
-	adc     #$65
-	.byte   $73
-	.byte   $3A
-	jsr     L5B18
-	eor     #$5D
-	jsr     L614C
-	.byte   $73
-	.byte   $74
-	jsr     L7274
-	adc     #$65
-	.byte   $64
-	jsr     L2020
-	jsr     L2020
-	jsr     L3A20
-	jsr     L2018
-	jsr     L2020
-	jmp     L7361
-
-	.byte   $74
-	jsr     L6F63
-	ror     $656E
-	.byte   $63
-	.byte   $74
-	adc     $64
-	jsr     L2020
-	jsr     L203A
-	clc
-	jsr     L2020
-	jsr     L614C
-	.byte   $73
-	.byte   $74
-	jsr     L6170
-	.byte   $63
-	.byte   $6B
-	adc     $74
-	jsr     L6572
-	.byte   $63
-	ror     $27,x
-	.byte   $64
-	.byte   $3A
-	jsr     L5B20
-	lsr     a
-	eor     $4920,x
-	ror     L6F63
-	adc     $6E69
-	.byte   $67
-	jsr     L654D
-	.byte   $73
-	.byte   $73
-	adc     ($67,x)
-	adc     $20
-	.byte   $52
-	adc     $64
-	adc     #$72
-	adc     $63
-	.byte   $74
-	adc     #$6F
-	ror     L2023
-	jsr     L2020
-	and     $2D2D
-	and     $2D2B
-	and     $2D2D
-	and     ($2D),y
-	and     $2D2D
-	.byte   $2B
-	and     $2D2D
-	and     $2D32
-	and     $2D2D
-	.byte   $2B
-	and     $2D2D
-	and     $2D33
+	.byte   $12,"[D] Secs to wait: "
+	.byte	$11,"[E] Unsernum/PW: "
+	.byte	$1F,"[F] Days to call: S M T W T F S"
+	.byte   $12,"                  "
+	.byte   $02,"y "
+	.byte   $02,"n "
+	.byte	$1A,"[G] Call between hours  : "
+	.byte   $03," - "
+	.byte   $1A,"[H] Maximum # of retries: "
+	.byte	$18,"[I] Last tried        : "
+	.byte	$18,"    Last connected    : "
+	.byte	$18,"    Last packet recv'd: "
+	.byte	$20,"[J] Incoming Message Redirection"
+	.byte	$23,"    ----+----1----+----2----+----3-"
 	.byte   $04,"    "
 	.byte   $04,"    "
 	.byte	$15,"Q)uit, T)rash, A-L): "
