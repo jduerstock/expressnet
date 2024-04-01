@@ -51,7 +51,9 @@ L700D:  ldx	#$FF
 	stx	$A6
 	ldy	#$0C
 	bne	L701F
-L7015:  sty	$A6
+
+sub_7015:
+	sty	$A6
 	ldy	#$0B
 	bne	L701F
 L701B:  sty	$A6
@@ -101,13 +103,13 @@ L7063:  stx	$A5
 	stx	$A3
 	ldy	#$09 ; put text line
 	jsr	sub_7025
-	bne	L707C
+	bne	:+
 	lda	#$0B
 	sta	$0342,x
 	lda	#$9B
 	jmp	CIOV
 
-L707C:  rts
+:	rts
 
 L707D:  brk
 L707E:  jmp	L7081
@@ -118,7 +120,9 @@ L7081:  sta	L707D
 	.byte   $13
 	ora	($01),y
 	.byte   $83
-L708B:  tsx
+
+sub_708B:
+	tsx
 	stx	$04C1
 	ldy	#$80
 	tya
@@ -127,26 +131,28 @@ L708B:  tsx
 	ldy	$84
 	beq	L70A3
 	stx	$85
-L709B:  asl	a
+:	asl	a
 	rol	$85
 	dey
-	bne	L709B
+	bne	:-
 	ldx	$85
 L70A3:  rts
 
 L70A4:  ldy	$84
 	beq	L70B2
 	stx	$85
-L70AA:  lsr	$85
+:	lsr	$85
 	ror	a
 	dey
-	bne	L70AA
+	bne	:-
 	ldx	$85
 L70B2:  rts
 
 L70B3:  ldy	$D3
 	bpl	L70C7
-L70B7:  sta	$86
+
+sub_70B7:
+	sta	$86
 	stx	$87
 	sec
 	lda	#$00
@@ -158,10 +164,11 @@ L70B7:  sta	$86
 	tya
 L70C7:  rts
 
-L70C8:  stx	$D3
+sub_70C8:
+	stx	$D3
 	cpx	#$00
 	bpl	L70D1
-	jsr	L70B7
+	jsr	sub_70B7
 L70D1:  sta	$82
 	stx	$83
 	lda	$85
@@ -170,7 +177,7 @@ L70D1:  sta	$82
 	eor	$D3
 	sta	$D3
 	lda	$84
-	jsr	L70B7
+	jsr	sub_70B7
 	sta	$84
 	stx	$85
 L70E7:  lda	#$00
@@ -199,7 +206,7 @@ L7109:  lda	$86
 	ldx	$87
 	rts
 
-L710E:  jsr	L70C8
+L710E:  jsr	sub_70C8
 	ldx	$82
 	beq	L7130
 	stx	$C6
@@ -211,11 +218,11 @@ L710E:  jsr	L70C8
 L7120:  asl	a
 	rol	$87
 	asl	$C6
-	bcc	L712D
+	bcc	:+
 	adc	$C7
-	bcc	L712D
+	bcc	:+
 	inc	$87
-L712D:  dex
+:	dex
 	bne	L7120
 L7130:  sta	$86
 	lda	$82
@@ -226,7 +233,7 @@ L7130:  sta	$86
 	jsr	sub_70EC
 	jmp	L70B3
 
-L7143:  jsr	L70C8
+L7143:  jsr	sub_70C8
 	lda	$85
 	beq	L7171
 	ldx	#$08
@@ -239,10 +246,10 @@ L714C:  rol	$82
 	tay
 	lda	$87
 	sbc	$85
-	bcc	L7162
+	bcc	:+
 	sta	$87
 	sty	$83
-L7162:  dex
+:	dex
 	bne	L714C
 	lda	$82
 	rol	a
@@ -297,14 +304,14 @@ L7191:  jsr	L7143
 	iny
 	lda	($84),y
 	tay
-L71BD:  lda	$A0,y
+:	lda	$A0,y
 	sta	($82),y
 	dey
-	bpl	L71BD
+	bpl	:-
 	lda	$11
 	bne	L71D8
 	inc	$11
-	jmp	L708B
+	jmp	sub_708B
 
 	php
 	.byte   $63
@@ -316,13 +323,13 @@ L71D8:  rts
 
 L71D9:  bpl	L71F1
 	cpy	#$88
-	beq	L71E7
+	beq	:+
 	tya
 	cpy	#$80
 	beq	L71F6
 	jmp	L707E
 
-L71E7:  txa
+:	txa
 	lsr	a
 	lsr	a
 	lsr	a
@@ -335,7 +342,7 @@ L71F1:  rts
 	ldx	#$01
 	stx	$11
 L71F6:  pha
-	jsr	L708B
+	jsr	sub_708B
 	pla
 	tay
 	rts
@@ -378,7 +385,7 @@ L723A:  stx	$A1
 	tax
 	ldy	$A1
 	lda	$B7
-	jsr	L7015
+	jsr	sub_7015
 	jmp	L71D9
 
 L7247:  jsr	L701B
@@ -430,7 +437,9 @@ L727E:  stx	$A3
 
 sub_729B:
 	lda	#$9B
-L729D:  tax
+
+sub_729D:
+	tax
 	lda	$B7
 
 sub_72A0:
@@ -442,7 +451,8 @@ L72A4:  ldx	#$0B
 L72A9:  ldy	#$9B
 	bne	L72A4
 
-L72AD:  jsr	sub_7025
+sub_72AD:
+	jsr	sub_7025
 	jmp	L71D9
 
 L72B3:  sta	$D4
@@ -466,7 +476,7 @@ L72D5:  jsr	L72B3
 	lda	$B7
 L72DA:  ldx	#$50
 	ldy	#$05
-	jsr	L7015
+	jsr	sub_7015
 	jmp	L71D9
 
 	ldx	#$00
@@ -635,7 +645,7 @@ L7402:  sta	$A4
 	lda	#$04
 	sta	$A6
 	lda	#$24
-	jsr	L729D
+	jsr	sub_729D
 L740F:  lda	#$00
 	ldx	#$04
 L7413:  asl	$A4
@@ -647,10 +657,9 @@ L7413:  asl	$A4
 	cmp	#$3A
 	bmi	L7423
 	adc	#$06
-L7423:  jsr	L729D
-	.byte   $C6
-L7427:  ldx	$D0
-	.byte   $E5
+L7423:  jsr	sub_729D
+	dec	$A6
+	bne	L740F
 L742A:  rts
 
 sub_742B:
@@ -683,7 +692,7 @@ L7448:  inc	$8A
 	cmp	#$45
 	bne	L746B
 	lda	#$9B
-L7465:  jsr	L729D
+L7465:  jsr	sub_729D
 	jmp	L7448
 
 L746B:  ldy	$8B
@@ -836,7 +845,7 @@ L7580:  rts
 
 	jsr	L752F
 	ldy	#$12
-	jmp	L72AD
+	jmp	sub_72AD
 
 	ldx	$D20A
 	cmp	#$00
@@ -1681,13 +1690,13 @@ L7BBB:  clc
 L7BE0:  rts
 
 L7BE1:  brk
-L7BE2:  jmp	L7BE5
-
-L7BE5:  ldy	#$00
+sub_7BE2:
+	jmp	:+
+:	ldy	#$00
 	sty	L7BE1
 	sty	L773C
 	lda	#$9C
-	jsr	L729D
+	jsr	sub_729D
 	jmp	L7BF9
 
 L7BF5:
@@ -1866,7 +1875,7 @@ L7D70:  lda	L7C49
 	jmp	L7E48
 
 L7D7A:  lda	#$9C
-	jsr	L729D
+	jsr	sub_729D
 	jmp	L7D86
 
 L7D82:
@@ -2142,10 +2151,10 @@ L7FDC:  rts
 
 L7FE0:  lda	L773C
 	eor	#$43
-	beq	L7FEA
+	beq	:+
 	jmp	L7FF8
 
-L7FEA:  ldy	#$01
+:	ldy	#$01
 	sty	L7743
 	lda	#$15
 	sta	L773C
@@ -2263,7 +2272,7 @@ L80C8:  lda	L7746
 	bcs	L80D9
 	jmp	L80DD
 
-L80D9:  jsr	L7BE2
+L80D9:  jsr	sub_7BE2
 	rts
 
 L80DD:  jmp	L812B
@@ -2390,7 +2399,7 @@ L81E3:  lda	L7FFD
 	beq	L81EE
 	jmp	L81F2
 
-L81EE:  jsr	L7BE2
+L81EE:  jsr	sub_7BE2
 	rts
 
 L81F2:  jmp	L8207
@@ -2646,7 +2655,7 @@ L8467:  lda	L8458
 	ldy	#$21
 	ldx	#$00
 	lda	#$02
-	jsr	L72AD
+	jsr	sub_72AD
 	jsr	MIOresume
 	rts
 
@@ -2753,4 +2762,4 @@ L85CD:  rts
 
 	.word	$02E2
 	.word	$02E3
-	.word	$84B5
+	.word	L84B5
